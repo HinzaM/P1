@@ -6,6 +6,12 @@ import java.io.*;
 import javax.swing.*;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
+
+//testing my changes
+//
+///
+
+
 /**
  *   JMenuFrame: includes one JMenuBar,2 JMenus and 8 JMenuItem objects. 
  *   When a menu item is selected, a string
