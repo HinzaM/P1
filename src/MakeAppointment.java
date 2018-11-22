@@ -3,6 +3,8 @@ import sun.plugin2.gluegen.runtime.CPU;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -95,6 +97,14 @@ public class MakeAppointment extends JFrame{
         button2 = new JButton("Clear");                                                        //5. button2 (Clear)
         button2.setBounds(370,250,80,50);
         cPane.add(button2);
+        //code for clear field
+        button2.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                jTAApNo.setText("");
+                jTAId.setText("");
+                jTADate.setText("");
+            }
+        });
 
     }
 

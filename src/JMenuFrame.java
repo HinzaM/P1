@@ -186,47 +186,6 @@ public class JMenuFrame extends JFrame implements ActionListener {
     }// end constructor
 
 
-    //------------------------------------------------------------------------------------------------------------------
-    //13. creating action listeners
-    public void actionPerformed(ActionEvent event) {
-
-        if (event.getActionCommand() .equals ("Quit")){
-            showMessage("Shutting down the system");
-            System.exit(0);
-        }
-
-        else if (event.getActionCommand() .equals ("Display")){
-            display();
-        }
-        else if (event.getActionCommand() .equals ("New File")){
-            newSystem();
-        }
-        else if (event.getActionCommand() .equals ("Save")){
-            // NEW BLOCK OF ERROR-HANDLING HERE: MUST BE INCLUDED
-            try{
-                save();
-                showMessage("Data saved successfully");
-            } // try
-            catch (IOException f){
-                showMessage("Not able to save the file:\n"+
-                        "Check the console printout for clues to why. ");
-                f.printStackTrace();
-            }// catch
-        }// else if
-
-        else if (event.getActionCommand() .equals ("Open")){
-            open();
-            display();
-        }
-        else
-            showMessage("I have no idea what you clicked");
-        // end else
-    } // end actionPerformend
-
-    /** Quits the program when quit is clicked in menu items
-     * or
-     * Displays text telling what menu item is selected */
-
 
     //------------------------------------------------------------------------------------------------------------------
     //14. creating Appointment menu items
@@ -241,8 +200,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
         appointmentMenu = new JMenu("Appointments");
 
         // create item 1
-        item1 = new JMenuItem("Make Appointment");                                   //Make Appointments
-
+        item1 = new JMenuItem("Make Appointment");                                      //Make Appointments
         item1.addActionListener( this );
 
         appointmentMenu.add( item1 );
@@ -253,7 +211,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
 
         // create item 2
-        item2 = new JMenuItem("View Appointments");                                   //View Appointments...
+        item2 = new JMenuItem("View Appointments");                                         //View Appointments...
         item2.addActionListener( this );
         appointmentMenu.add( item2 );
         item2.addActionListener(e -> {
@@ -285,7 +243,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
 
         // create item 2
-        item2 = new JMenuItem("View Patients");                                           //View Patients
+        item2 = new JMenuItem("View Patients");                                                  //View Patients
         item2.addActionListener( this );
         patientMenu.add( item2 );
 
@@ -298,7 +256,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
     } // end createPatientMenu
 
     //------------------------------------------------------------------------------------------------------------------
-    //16. creating event handler to close the window
+                                                                        //16. creating event handler to close the window
 
     private class WindowEventHandler extends WindowAdapter
     {
@@ -310,7 +268,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    //17. creating an array list for patients
+                                                                            //17. creating an array list for patients
     //    creating text area to display patients
     //    displaying patients
 
@@ -369,7 +327,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
 
     //------------------------------------------------------------------------------------------------------------------
-    // save method
+                                                                                                        // save method
     public void save() throws IOException {
         //	public void save(){// throws IOException {
         ObjectOutputStream os;
@@ -379,7 +337,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    // open method
+                                                                                                        // open method
     public void open() {
         count = 0;
         try{
@@ -400,7 +358,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
 
     //------------------------------------------------------------------------------------------------------------------
-    // display method
+                                                                                                    // display method
     public void display(){
         JTextArea area = new JTextArea();
         if (count>0) {
@@ -413,28 +371,81 @@ public class JMenuFrame extends JFrame implements ActionListener {
             showMessage("No patients in the system");
     } // end display
 
+
     //------------------------------------------------------------------------------------------------------------------
-    // creating file menu
+                                                                                                // creating file menu
     private void createFileMenu(){
-        // create the menu
+
         fileMenu = new JMenu("File");
-        // declare a menu item (re-usable)
-        JMenuItem item;
-        item = new JMenuItem("Save");
-        item.addActionListener(this);
-        fileMenu.add(item);
-        item = new JMenuItem("Open");
-        item.addActionListener(this);
-        fileMenu.add(item);
-        item = new JMenuItem("New File");
-        item.addActionListener(this);
-        fileMenu.add(item);
-        // create the 'quit' option
+
+        JMenuItem item1;
+        JMenuItem item2;
+        JMenuItem item3;
+        JMenuItem item4;
+
+        item1 = new JMenuItem("Save");
+        item1.addActionListener(this);
+        fileMenu.add(item1);
+
+        item2 = new JMenuItem("Open");
+        item2.addActionListener(this);
+        fileMenu.add(item2);
+
+        item3 = new JMenuItem("New File");
+        item3.addActionListener(this);
+        fileMenu.add(item3);
+
+
         fileMenu.addSeparator();
-        item = new JMenuItem("Quit");
-        item.addActionListener(this);
-        fileMenu.add(item);
+
+        item4 = new JMenuItem("Quit");
+        item4.addActionListener(this);
+        fileMenu.add(item4);
     }
+
+    //------------------------------------------------------------------------------------------------------------------
+                                                                                        //13. creating action listeners
+    public void actionPerformed(ActionEvent event) {
+
+        if (event.getActionCommand() .equals ("Quit")){
+            showMessage("Shutting down the system");
+            System.exit(0);
+        }
+
+        else if (event.getActionCommand() .equals ("Display")){
+            display();
+        }
+        else if (event.getActionCommand() .equals ("New File")){
+            newSystem();
+        }
+        else if (event.getActionCommand() .equals ("Save"))
+        {
+            try{
+                save();
+                showMessage("Data saved successfully");
+               }
+
+            catch (IOException f)
+            {
+                showMessage("Not able to save the file:\n"+
+                        "Check the console printout for clues to why. ");
+                f.printStackTrace();
+            }
+
+        }// else if
+
+        else if (event.getActionCommand() .equals ("Open")){
+            open();
+            display();
+        }
+        else
+            showMessage("I have no idea what you clicked");
+        // end else
+    } // end actionPerformed
+
+    /** Quits the program when quit is clicked in menu items
+     * or
+     * Displays text telling what menu item is selected */
 
     //------------------------------------------------------------------------------------------------------------------
     //

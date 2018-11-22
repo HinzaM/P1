@@ -96,17 +96,14 @@ public class AddPatient extends JFrame{
         cPane.add(jPanel1);
 
 
-        //JButton button1;
-        //JButton button2;
 
-
-        // construct two buttons
+        // construct save button
         button1 = new JButton("Save");
         button1.setBounds(300, 600, 80, 50);
         cPane.add(button1);
-        //button1.addActionListener(this);
 
-       // patient = new Patient();
+        //button1.addActionListener(this);
+        // patient = new Patient();
 
         button1.addActionListener(e -> {
             String name = jTAName.getText();
@@ -119,49 +116,33 @@ public class AddPatient extends JFrame{
 
             JMenuFrame.patients.add(patient);
 
-            //JMenuFrame.apatients.add(patientDetails.getPatient());
-
-
+            //JMenuFrame.patients.add(patientDetails.getPatient());
         });
 
 
-        // construct two buttons
+        // construct clear button
         button2 = new JButton("Clear");
         button2.setBounds(370, 250, 80, 50);
         cPane.add(button2);
-        //button2.addActionListener(this);
 
-
-     /* code for clear field
+      //code for clear field
         button2.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
-            JTextField.setName("");
-            //textfield.setText(null); //or use this
+            jTAName.setText("");
+            jTAAddress.setText("");
+            jTAPhone.setText("");
+            jTAGender.setText("");
         }
     });
-    code end */
 
-
-    }
+    } //end
 
 
 
-    public Patient getPatient(){
-        return patient;
-    }
+    public Patient getPatient(){ return patient; }
 
-  //  public static void main(String[] args) {
-  //      new AddPatient();
-  //  }
+    //public static void main(String[] args) { new AddPatient(); }
 
-    //code for clear field
-    public void actionPerformed(ActionEvent e) {
 
-        while (e.getActionCommand() .equals ("Clear")){
-            jTAId.setText(null);
-            jTAName.setText(null);
-            return;
-        }
-    }
 }
 
