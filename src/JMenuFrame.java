@@ -26,11 +26,11 @@ public class JMenuFrame extends JFrame implements ActionListener {
     //------------------------------------------------------------------------------------------------------------------
     public void newSystem()
     {
-       patients= new ArrayList<Patient>();
+       patients = new ArrayList<Patient>();
     }
     public void newSystem2()
     {
-        appointments= new ArrayList<Appointment>();
+        appointments = new ArrayList<Appointment>();
     }
 
     //------------------------------------------------------------------------------------------------------------------
