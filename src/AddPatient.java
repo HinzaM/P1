@@ -13,7 +13,7 @@ import javafx.scene.control.RadioButton;
 
 public class AddPatient extends JFrame{
     JButton button1, button2;
-    JTextField jTAId, jTAName;
+    //JTextField jTAId, jTAName;
 
     private Patient patient;
 
@@ -36,13 +36,6 @@ public class AddPatient extends JFrame{
         jPanel1.setSize(700, 400);
 
 
- /*       //1
-        JLabel jLabelId = new JLabel("Id: ");
-        JTextField jTAId = new JTextField();
-        jPanel1.setLayout(new GridLayout(5, 5));
-        jPanel1.add(jLabelId);
-        jPanel1.add(jTAId);   */
-
         //1
         JLabel jLabelName = new JLabel("Name: ");
         JTextField jTAName = new JTextField();
@@ -64,7 +57,7 @@ public class AddPatient extends JFrame{
         jPanel1.add(jLabelPhone);
         jPanel1.add(jTAPhone);
 
-/*        //4
+/*      //4
         JLabel jLabelDob = new JLabel("DOB: ");
         JTextField jTADob = new JTextField(20);
         jPanel1.setLayout(new GridLayout(10, 5));
@@ -72,7 +65,7 @@ public class AddPatient extends JFrame{
         jPanel1.add(jTADob); */
 
         //5
-        JLabel jLabelGender = new JLabel("Gender: \n\n");
+        JLabel jLabelGender = new JLabel("Gender: (M/F/X) \n\n");
         JTextField jTAGender = new JTextField(20);
         jPanel1.setLayout(new GridLayout(5, 6));
         jPanel1.add(jLabelGender);
@@ -96,8 +89,10 @@ public class AddPatient extends JFrame{
         cPane.add(jPanel1);
 
 
-
-        // construct save button
+        /*
+        * construct two buttons
+        */
+                                                                                              // construct save button
         button1 = new JButton("Save");
         button1.setBounds(300, 600, 80, 50);
         cPane.add(button1);
@@ -120,7 +115,7 @@ public class AddPatient extends JFrame{
         });
 
 
-        // construct clear button
+                                                                                             // construct clear button
         button2 = new JButton("Clear");
         button2.setBounds(370, 250, 80, 50);
         cPane.add(button2);

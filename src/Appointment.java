@@ -34,7 +34,7 @@ public class Appointment {
     //6. toString
     @Override
     public String toString() {
-        return "Appointment{" +
+        return "Appointment: \n\n" +
                 "appNo=" + appNo +
                 ", id=" + id +
                 ", appDate=" + appDate +

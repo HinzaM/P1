@@ -37,10 +37,10 @@ public class ViewPatients extends JFrame {
 
         //1
         //JLabel jLabelName = new JLabel("Enter Name: ");
-        JTextField jTAId = new JTextField();
-        jPanel1.setLayout(new GridLayout(1, 4));
+        //JTextField jTAId = new JTextField();
+        //jPanel1.setLayout(new GridLayout(1, 4));
         //jPanel1.add(jLabelName);
-        jPanel1.add(jTAId);
+        //jPanel1.add(jTAId);
 
         cPane.add(jPanel1);
 
