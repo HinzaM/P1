@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 import javafx.scene.control.RadioButton;
-//testing commit
 
 public class AddPatient extends JFrame{
     JButton button1, button2;
