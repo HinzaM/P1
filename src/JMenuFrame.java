@@ -53,7 +53,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
         //3. image
         //create a BufferedImage from a jpg file
-        BufferedImage image = ImageIO.read(new File("E:\\1. Object Oriented Programming\\3. Problem Sets\\Project\\src\\docBg.jpg"));
+        BufferedImage image = ImageIO.read(new File("src\\docBg.jpg"));
         JLabel mainLabel = new JLabel(new ImageIcon(image));
         setContentPane(mainLabel);
         JPanel jpanel=new JPanel();

@@ -55,12 +55,11 @@ public class MakeAppointment extends JFrame{
 
         JLabel jLabelDate = new JLabel("Date: ");                                                //3. Appointment Date
         jPanel1.add(jLabelDate);
-
-        DateFormat format = new SimpleDateFormat("yyyy--MM--dd");
+        DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
         JFormattedTextField jTADate = new JFormattedTextField(format);
         jTADate.setValue(new Date());
         jPanel1.add(jTADate);
-        //cPane.add(jPanel1, BorderLayout.NORTH);
+
 
         cPane.add(jPanel1);
 
@@ -68,28 +67,31 @@ public class MakeAppointment extends JFrame{
         JButton button1;
         JButton button2;
 
-        // construct two buttons
+        // construct save button
         button1 = new JButton("Save");                                                         //4. button1 (Save)
         button1.setBounds(250,600,80,50);
         cPane.add(button1);
 
         button1.addActionListener(e -> {
             int appNo = Integer.parseInt(jTAApNo.getText());
-            int id = Integer.parseInt(jTAId.getText());                            // Patient id
-            //Date appDate = jTADate.getText();
+            int id = Integer.parseInt(jTAId.getText());                                                     // Patient id
+            //Date appDate = (Date) format.parseObject(jTADate.getText());
 
+            //getAppDate(format.format(appDate));
+            //Date appDate = jTADate.getText();
             //appointment = new Appointment(appNo,id,appDate);
+
             setVisible(false);
 
             JMenuFrame.appointments.add(appointment);
 
-            //JMenuFrame.apatients.add(patientDetails.getPatient());
+            //JMenuFrame.patients.add(patientDetails.getPatient());
 
 
         });
 
 
-        // construct two buttons
+        // construct clear button
         button2 = new JButton("Clear");                                                        //5. button2 (Clear)
         button2.setBounds(370,250,80,50);
         cPane.add(button2);
