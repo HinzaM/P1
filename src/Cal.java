@@ -1,3 +1,10 @@
+/*
+This code has been taken from the following link:
+
+https://www.chegg.com/homework-help/questions-and-answers/trying-create-event-calendar-using-java-cannot-seem-find-way-add-events-days-months-thinki-q7948143
+
+ */
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
