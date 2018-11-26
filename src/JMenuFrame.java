@@ -1,13 +1,16 @@
+/**
+ * Created by T00203592.
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
 import java.io.*;
-import javax.swing.*;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
 /**
- *   JMenuFrame: includes one JMenuBar,2 JMenus and 8 JMenuItem objects. 
+ *   JMenuFrame: includes one JMenuBar,2 JMenus and 8 JMenuItem objects.
  *   When a menu item is selected, a string
  *   showing which menu choice is selected will appear in a label on the frame.
  */
@@ -24,9 +27,10 @@ public class JMenuFrame extends JFrame implements ActionListener {
     static ArrayList<Appointment> appointments;
 
     //------------------------------------------------------------------------------------------------------------------
+    // creates a new system and when ViewPatients is clicked it displays the patient list
     public void newSystem()
     {
-       //patients = new ArrayList<Patient>();
+        //patients = new ArrayList<Patient>();
 
         //JB added code to ensure the arraylist is only initialised empty on one occasion
         if(open().equals("problem"))
@@ -34,11 +38,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
         else
             open();
     }
-    public void newSystem2()
-    {
-        //appointments = new ArrayList<Appointment>();
 
-    }
 
     //------------------------------------------------------------------------------------------------------------------
     public JMenuFrame() throws IOException
@@ -46,19 +46,19 @@ public class JMenuFrame extends JFrame implements ActionListener {
         newSystem();
         Container cPane;
 
-                                                                                       //1. setting the frame properties
+        //1. setting the frame properties
         setTitle     ("MEDIDOC");
         setSize      (800,600);
         setResizable (false);
         setLocation  (300,300);
 
-                                                                    //2. shut down the program when the window is closed
+        //2. shut down the program when the window is closed
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         addWindowListener(new WindowEventHandler());
 
         cPane = getContentPane();
 
-                                                                             //3. create a BufferedImage from a jpg file
+        //3. create a BufferedImage from a jpg file
         BufferedImage image = ImageIO.read(new File("src\\docBg.jpg"));
         JLabel mainLabel = new JLabel(new ImageIcon(image));
         setContentPane(mainLabel);
@@ -66,12 +66,12 @@ public class JMenuFrame extends JFrame implements ActionListener {
         jpanel.setSize(50,50);
         //image end...
 
-                                                                                                //4. creating menu items
+        //4. creating menu items
         createFileMenu();
-        createAppintmentMenu();
+        createAppointmentMenu();
         createPatientMenu();
 
-                                                                                  //5. adding menu items to the menu bar
+        //5. adding menu items to the menu bar
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(Color.orange);
@@ -79,13 +79,13 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuBar.add(appointmentMenu);
         menuBar.add(patientMenu);
 
-                                                                      //6. creating and positioning title/response label
+        //6. creating and positioning title/response label
         response = new JLabel("Welcome to MEDIDOC\n\n\n" );
         response.setBounds(395,10,500,50);
         response.setFont(new Font("Bold", Font.BOLD, 17));
         mainLabel.add(response);
 
-                                                                                                   //7. creating buttons
+        //7. creating buttons
         JButton button1;
         JButton button2;
         JButton button3;
@@ -93,9 +93,51 @@ public class JMenuFrame extends JFrame implements ActionListener {
         JButton button5;
 
 
-        //8. construct button 1                                                            // button1 (Make Appointment)
+        //8. construct button 3
+        button3 = new JButton("Add Patient");                                              // button3 (Add Patient)
+        button3.setBounds(380,70,200,50);
+        mainLabel.add(button3);
+        button3.addActionListener(e -> {
+            AddPatient patientDetails = new AddPatient();
+            patientDetails.setVisible(true);
+            // patients.add(patientDetails.getPatient());
+        });
+
+
+        //9. construct button 4
+        button4 = new JButton("View Patients");                                           // button4 (View Patient)
+        button4.setBounds(380,140,200,50);
+        mainLabel.add(button4);
+        button4.addActionListener(e -> {
+            ViewPatients patientDetails = new ViewPatients();
+            patientDetails.setVisible(true);
+
+            /** JTextArea display team
+             *
+             * @param patients an array of Patient
+             *
+             */
+            JTextArea jta = new JTextArea();
+            Font font = new Font("monospaced",Font.PLAIN,13);
+
+            jta.setFont(font);
+            jta.setText("\t--- Patient List ---\n");
+
+            for(Patient p:patients)
+            {
+                if (p == null)
+                    break;
+
+                else {
+                    jta.append(p.toString());
+                }
+            }
+            JOptionPane.showMessageDialog(null,jta);
+        });
+
+        //10. construct button 1                                                            // button1 (Make Appointment)
         button1 = new JButton("Make Appointment");
-        button1.setBounds(380,70,200,50);
+        button1.setBounds(380,210,200,50);
         //mainLabel.setLocation(150, 371);
         mainLabel.add(button1);
         button1.addActionListener(e -> {
@@ -104,16 +146,20 @@ public class JMenuFrame extends JFrame implements ActionListener {
         });
 
 
-        //9. construct button 2                                                            // button2 (View Appointment)
-        button2 = new JButton("View Apppointments");
-        button2.setBounds(380,140,200,50);
+        //11. construct button 2                                                            // button2 (View Appointment)
+        button2 = new JButton("View Appointments");
+        button2.setBounds(380,280,200,50);
         //jpanel.setLocation(50, 371);
         mainLabel.add(button2);
         button2.addActionListener(e -> {
             ViewAppointments appointmentDetails = new ViewAppointments();
             appointmentDetails.setVisible(true);
 
-            //displayAppoinetment(appointments);
+            /** JTextArea display team
+             *
+             * @param appointments an array of Appointment
+             *
+             */
             JTextArea jta = new JTextArea();
             Font font = new Font("monospaced",Font.PLAIN,13);
 
@@ -133,47 +179,6 @@ public class JMenuFrame extends JFrame implements ActionListener {
         });
 
 
-
-
-        //10. construct button 3
-        button3 = new JButton("Add Patient");                                              // button3 (Add Patient)
-        button3.setBounds(380,210,200,50);
-        mainLabel.add(button3);
-        button3.addActionListener(e -> {
-            AddPatient patientDetails = new AddPatient();
-            patientDetails.setVisible(true);
-           // patients.add(patientDetails.getPatient());
-        });
-
-
-        //11. construct button 4
-        button4 = new JButton("View Patients");                                           // button4 (View Patient)
-        button4.setBounds(380,280,200,50);
-        mainLabel.add(button4);
-        button4.addActionListener(e -> {
-            ViewPatients patientDetails = new ViewPatients();
-            patientDetails.setVisible(true);
-
-            //displayPatients(patients);
-            JTextArea jta = new JTextArea();
-            Font font = new Font("monospaced",Font.PLAIN,13);
-
-            jta.setFont(font);
-            jta.setText("--- Information ---\n");
-
-            for(Patient p:patients)
-            {
-                if (p == null)
-                    break;
-
-                else {
-                    jta.append(p.toString());
-                     }
-            }
-            JOptionPane.showMessageDialog(null,jta);
-        });
-
-
         //12. construct button 5                                                                // button5 (Doctor Info)
         button5 = new JButton("Doctor Profile");
         button5.setBounds(380,400,200,50);
@@ -181,10 +186,10 @@ public class JMenuFrame extends JFrame implements ActionListener {
         button5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 JOptionPane.showMessageDialog(null, "Dr. Matt Smith \n- General Practitioner " +
-                        "\n- 11 years experience" +
-                        "\n\n\nClinic Hours\n- Sat-Sun:   9:00am - 12:00pm " +
-                        "                   \n- Mon-Thus:  9:00am - 3:00pm " +
-                        "                   \n- Friday:    Closed \n","Doctor Information",
+                                "\n- 11 years experience" +
+                                "\n\n\nClinic Hours\n- Sat-Sun:   9:00am - 12:00pm " +
+                                "                   \n- Mon-Thus:  9:00am - 3:00pm " +
+                                "                   \n- Friday:    Closed \n","Doctor Information",
                         JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -196,109 +201,49 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
 
     //------------------------------------------------------------------------------------------------------------------
-    /*
-    * constructing menu items
-    */
-    //14. creating Appointment menu items
-    private void createAppintmentMenu( )
+    /**
+     * constructing menu items
+     */
+
+    //13. creating Appointment menu items
+    private void createAppointmentMenu( )
     {
-
-        JMenuItem item1;
-        JMenuItem item2;
-        JMenuItem item3;
-        
-	    // creating the menu
+        // creating the menu
         appointmentMenu = new JMenu("Appointments");
-
-        // create item 1
-        item1 = new JMenuItem("Make Appointment");                                             //Make Appointments
-        item1.addActionListener( this );
-
-        appointmentMenu.add( item1 );
-        item1.addActionListener(e -> {
-            MakeAppointment appointments = new MakeAppointment();
-            appointments.setVisible(true);
-        });
-
-
-        // create item 2
-        item2 = new JMenuItem("View Appointments");                                            //View Appointments
-        item2.addActionListener( this );
-        appointmentMenu.add( item2 );
-        item2.addActionListener(e -> {
-            ViewAppointments appointments = new ViewAppointments();
-            appointments.setVisible(true);
-        });
 
     } // end createAppointmentMenu
 
 
 
-    //15. creating Patient Menu items
+    //14. creating Patient Menu items
     private void createPatientMenu( )
     {
-        JMenuItem item1;
-        JMenuItem item2;
-
         patientMenu = new JMenu("Patients");
-
-
-        // create item 1
-        item1 = new JMenuItem("Add Patient");                                                        //Add Patient
-        item1.addActionListener( this );
-        patientMenu.add( item1 );
-        item1.addActionListener(e -> {
-            AddPatient patientDetails = new AddPatient();
-            patientDetails.setVisible(true);
-        });
-
-
-        // create item 2
-        item2 = new JMenuItem("View Patients");                                                    //View Patients
-        item2.addActionListener( this );
-        patientMenu.add( item2 );
-
-        item2.addActionListener(e -> {
-            PatientDriver patientDetails = new PatientDriver();
-            patientDetails.setVisible(true);
-        });
-
 
     } // end createPatientMenu
 
 
-    // creating file menu
+    //15. creating file menu
     private void createFileMenu(){
 
         fileMenu = new JMenu("File");
 
         JMenuItem item1;
         JMenuItem item2;
-        JMenuItem item3;
-        JMenuItem item4;
 
         item1 = new JMenuItem("Save");                                                                       //Save
         item1.addActionListener(this);
         fileMenu.add(item1);
 
-        item2 = new JMenuItem("Open");                                                                       //Open
-        item2.addActionListener(this);
-        fileMenu.add(item2);
-
-        item3 = new JMenuItem("New File");                                                               //New File
-        item3.addActionListener(this);
-        fileMenu.add(item3);
-
-
         fileMenu.addSeparator();
 
-        item4 = new JMenuItem("Quit");                                                                       //Quit
-        item4.addActionListener(this);
-        fileMenu.add(item4);
+        item2 = new JMenuItem("Quit");                                                                       //Quit
+        item2.addActionListener(this);
+        fileMenu.add(item2);
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    //13. creating action listeners
+    //16. creating action listeners
     public void actionPerformed(ActionEvent event) {
 
         if (event.getActionCommand() .equals ("Quit")){
@@ -306,12 +251,6 @@ public class JMenuFrame extends JFrame implements ActionListener {
             System.exit(0);
         }
 
-        else if (event.getActionCommand() .equals ("Display")){
-            display();
-        }
-        else if (event.getActionCommand() .equals ("New File")){
-            newSystem();
-        }
         else if (event.getActionCommand() .equals ("Save"))
         {
             try{
@@ -328,10 +267,6 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
         }// else if
 
-        else if (event.getActionCommand() .equals ("Open")){
-            open();
-            display();
-        }
         else
             showMessage("I have no idea what you clicked");
         // end else
@@ -344,7 +279,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
 
     //------------------------------------------------------------------------------------------------------------------
-    // save method
+    //17. save method
     public void save() throws IOException {
         //	public void save(){// throws IOException {
         ObjectOutputStream os;
@@ -354,104 +289,30 @@ public class JMenuFrame extends JFrame implements ActionListener {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    // open method
+    //18. open method
     public String open() {
         count = 0;
         try{
             ObjectInputStream is;
             is = new ObjectInputStream(new FileInputStream ("patients.dat"));
             patients  = (ArrayList<Patient>) is.readObject();
-            for(Patient p:patients)
-                JOptionPane.showMessageDialog(null,p);
+            //for(Patient p:patients)
+            //JOptionPane.showMessageDialog(null,p);
             is.close();
             return "good";
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null,"Open didn't work");
             return "problem";
-           // e.printStackTrace();
+            // e.printStackTrace();
         }
 
-        // how many valid patient records?
-        //while (patients.size() != 0)
-        //    count++;
     } // end open()
 
 
-    //------------------------------------------------------------------------------------------------------------------
-    // display method
-    public void display(){
-        JTextArea area = new JTextArea();
-        if (count>0) {
-            area.setText("Patient List: \n\n");
-
-            for (int i = 0; i<count; i++) // loop over existing patients, rather than array size
-                area.append("Patient Id: " + i + " " + patients.get(i).toString()+"\n");
-            showMessage(area);
-        }
-        else
-            showMessage("No more patients in the system");
-    } // end display
-
-
-
 
     //------------------------------------------------------------------------------------------------------------------
-                                                                            //17. creating an array list for patients
-    /* creating text area to display patients
-     * displaying patients
-     *
-     * creating text area to display appointments
-     * displaying appointments
-    */
-
-
-    public void displayPatients(ArrayList<Patient> patients)
-    {
-        JTextArea jta = new JTextArea();
-        Font font = new Font("monospaced",Font.PLAIN,13);
-
-        jta.setFont(font);
-        jta.setText("--- Information ---\n");
-        //patients = new <Patient>("Spencer Hastings","Princess Street","098654368",'F');
-
-        for(Patient p:patients) {
-            if (p == null)
-                break;
-
-            else {
-                jta.append(p.toString());
-            }
-        }
-
-        //return jta;
-        JOptionPane.showMessageDialog(null,jta);
-    }
-
-
-        public void displayAppointments(ArrayList<Appointment> appointments)
-        {
-            JTextArea jta = new JTextArea();
-            Font font = new Font("monospaced",Font.PLAIN,13);
-
-            jta.setFont(font);
-            jta.setText("--- Information ---\n");
-
-            for(Appointment a:appointments) {
-                if (a == null)
-                    break;
-
-                else {
-                    jta.append(a.toString());
-                }
-            }
-
-            //return jta;
-            JOptionPane.showMessageDialog(null,jta);
-        }
-
-    //------------------------------------------------------------------------------------------------------------------
-    //17. creating JMenuFrame
+    //19. creating JMenuFrame
     public static void main(String[] args) throws IOException
     {
         JMenuFrame frame = new JMenuFrame();
@@ -461,7 +322,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    //16. creating event handler to close the window
+    //20. creating event handler to close the window
 
     private class WindowEventHandler extends WindowAdapter
     {
@@ -475,16 +336,13 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
 
     //------------------------------------------------------------------------------------------------------------------
-    //
+    //21. this shows a particular message when an action event is performed
     /** utility methods to make the code simpler */
     public void showMessage (String s){
         JOptionPane.showMessageDialog(null,s);
     }
 
-    public void showMessage (JTextArea s){
-        JOptionPane.showMessageDialog(null,s);
-    }
 }
 
 
- // end class
+// end class
