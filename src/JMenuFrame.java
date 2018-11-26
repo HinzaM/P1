@@ -14,6 +14,11 @@ import java.util.ArrayList;
  *   When a menu item is selected, a string
  *   showing which menu choice is selected will appear in a label on the frame.
  */
+
+/**This is an instantiable JMenuFrame class.
+ @author Hinza
+ @version 1.0 */
+
 public class JMenuFrame extends JFrame implements ActionListener {
     JMenu fileMenu;
     JMenu appointmentMenu;

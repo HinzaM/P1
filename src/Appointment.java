@@ -1,6 +1,11 @@
+/**This is an instantiable Appointment class.
+ @author Hinza
+ @version 1.0 */
+
+
 public class Appointment {
 
-    //1. private variables
+    //attributes
     private int appNo;      // appointment number
     private int id;         // patient id
     private Cal appDate;   //appointment date
@@ -14,6 +19,11 @@ public class Appointment {
         appDate = new Cal();
     }
 
+    /** argument constructor method
+     @param appNo the full name of the student
+     @param id the full name of the student
+     @param appDate the full name of the student
+     */
     //3. argument constructor
     public Appointment(int appNo, int id, int dd, int mm, int yy) {
         setAppNo(appNo);
@@ -23,7 +33,7 @@ public class Appointment {
 
 
     //4. getters
-    /** method to return the height value
+    /** method to return the appNo value
      * @return the appNo of an appointment object
      */
     public int getAppNo() { return appNo; }
@@ -32,8 +42,8 @@ public class Appointment {
 
 
     //5. setters
-    /** method to set the age value
-     * @param the appDate of an appointment object
+    /** method to set the appNo value
+     * @param appNo of an appointment object
      */
     public void setAppNo(int appNo) { this.appNo = appNo; }
     public void setId(int id) { this.id = id; }
@@ -41,6 +51,8 @@ public class Appointment {
 
 
     //6. toString method
+    /** toString method to return the appointment details
+     *@return the appNo, id, appDate of the patient as a string */
     @Override
     public String toString() {
         return "Appointment: \n\n" +

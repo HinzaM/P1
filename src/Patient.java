@@ -1,10 +1,13 @@
 import java.lang.String;
 import java.io.Serializable;
 
+/**This is an instantiable Patient class.
+ @author Hinza
+ @version 1.0 */
 
 public class Patient implements Comparable<Patient>, Serializable{ //JB added Serializable interface to ensure arraylist can be saved successfully
 
-    //private variables
+    //attributes
     private static int autoID;
     private String name;
     private String address;
@@ -27,6 +30,12 @@ public class Patient implements Comparable<Patient>, Serializable{ //JB added Se
 
 
     //argument constructor
+    /** argument constructor method
+     @param name the full name of the patient
+     @param address the address of patient
+     @param phone the phone number of patient
+     @param gender the gender of patient
+     */
     public Patient(String name, String address, String phone, char gender)
     {
         autoID = JMenuFrame.patients.size() + 1;
@@ -39,12 +48,12 @@ public class Patient implements Comparable<Patient>, Serializable{ //JB added Se
 
 
     //getters
-    /** method to return the height value
-     * @return the id of a patient object
-     */
     public static int getAutoID() {
         return autoID;
     }
+    /** methods to return the patient id
+     * @return the id of a patient object
+     */
     public int getId() { return id; }
     public String getName() { return name; }
     public String getAddress() { return address; }
@@ -53,16 +62,28 @@ public class Patient implements Comparable<Patient>, Serializable{ //JB added Se
 
 
     //setters
-    /** method to set the name, address, phone and gender value
+    /** method to set the name
      * @param name of a patient object
      */
     public void setName(String name) { this.name = name; }
+    /** method to set the address
+     * @param address of a patient object
+     */
     public void setAddress(String address) { this.address = address; }
+    /** method to set the phone
+     * @param phone of a patient object
+     */
     public void setPhone(String phone) { this.phone = phone; }
+    /** method to set the gender value
+     * @param gender of a patient object
+     */
     public void setGender(char gender) {this.gender = gender; }
 
 
     //toString method
+    /** toString method to return the patient details
+     *@return the id, name, address, phone and gender of the patient as a string */
+
     @Override
     public String toString() {
         return "\n\n" +
