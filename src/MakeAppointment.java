@@ -1,8 +1,5 @@
-import sun.plugin2.gluegen.runtime.CPU;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -17,9 +14,11 @@ import javax.swing.JTextField;
 public class MakeAppointment extends JFrame{
     private Appointment appointment;
 
-    public static void main(final String args[]) {
-        JFrame frame = new JFrame("Formatted Example");
+    public Appointment getAppointment(){
+        return appointment;
     }
+
+    //public static void main(final String args[]) { JFrame frame = new JFrame("Formatted Example"); }
 
     public MakeAppointment() {
         Container cPane;
@@ -29,8 +28,6 @@ public class MakeAppointment extends JFrame{
         setSize(500, 600);
         setResizable(false);
         setLocation(500, 500);
-        // shut down the program when the window is closed
-        //setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         cPane = getContentPane();
         cPane.setLayout(new FlowLayout());
@@ -57,7 +54,12 @@ public class MakeAppointment extends JFrame{
 
         JLabel jLabelDate = new JLabel("Date: ");                                                //3. Appointment Date
         jPanel1.add(jLabelDate);
-        DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        /*
+        The code for the Date format is taken from the following
+
+        http://esus.com/creating-a-jformattedtextfield-that-only-accepts-dates/
+         */
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         JFormattedTextField jTADate = new JFormattedTextField(format);
         jTADate.setValue(new Date());
         jPanel1.add(jTADate);
@@ -73,22 +75,15 @@ public class MakeAppointment extends JFrame{
         button1 = new JButton("Save");                                                         //4. button1 (Save)
         button1.setBounds(250,600,80,50);
         cPane.add(button1);
-
         button1.addActionListener(e -> {
             int appNo = Integer.parseInt(jTAApNo.getText());
             int id = Integer.parseInt(jTAId.getText());                                                     // Patient id
-            //Date appDate = (Date) format.parseObject(jTADate.getText());
+            //Cal appDate = new Cal(jTADate.getText());
 
-            //getAppDate(format.format(appDate));
-            //Date appDate = jTADate.getText();
             //appointment = new Appointment(appNo,id,appDate);
 
             setVisible(false);
-
             JMenuFrame.appointments.add(appointment);
-
-            //JMenuFrame.patients.add(patientDetails.getPatient());
-
 
         });
 
@@ -106,10 +101,7 @@ public class MakeAppointment extends JFrame{
             }
         });
 
-    }
+    }// MakeAppointment() end...
 
-    public Appointment getAppointment(){
-        return appointment;
-    }
 }
 
