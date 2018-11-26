@@ -2,29 +2,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.awt.Dimension;
+
 
 public class ViewPatients extends JFrame {
-    public JButton button1 = new JButton("Search");
 
-
-    static ArrayList<Patient> patients;
-    //protected ArrayList<Patient> listPatient = new JList<>();
-    //public patients = new ArrayList<Patient>();
-    //protected CustomListModel<Patient> listModel;
-    //protected java.util.List<Patient> patients = new ArrayList<>();
-    //
+    private Patient patient;
 
     public ViewPatients() {
         Container cPane;
 
         //set the frame properties
         setTitle("View Patients");
-        setSize(500, 300);
+        setSize(300, 200);
         setResizable(false);
-        setLocation(300, 300);
+        setLocation(300, 200);
         // shut down the program when the window is closed
         //setDefaultCloseOperation(EXIT_ON_CLOSE);
         cPane = getContentPane();
@@ -35,94 +26,43 @@ public class ViewPatients extends JFrame {
         jPanel1.setSize(300, 400);
 
 
-        //1
-        //JLabel jLabelName = new JLabel("Enter Name: ");
-        //JTextField jTAId = new JTextField();
-        //jPanel1.setLayout(new GridLayout(1, 4));
-        //jPanel1.add(jLabelName);
-        //jPanel1.add(jTAId);
+        JButton button1;
 
-        cPane.add(jPanel1);
-
- /*       JButton button1;
-
-        // construct two buttons
-        button1 = new JButton("Search");
+        // construct search button
+        button1 = new JButton("Search Patient");
         button1.setBounds(300, 600, 80, 50);
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchPatients();
+            }
+        });
+
         cPane.add(button1);
 
-        //Cal.main(); */
+    }// ViewPatient end...
 
-        initComponents();
-    }
 
-    protected void initComponents() {
-        setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        JPanel panelButton = new JPanel();
-        panelButton.setLayout(new FlowLayout(FlowLayout.CENTER));
+    private void searchPatients()
+    {
+        String name;
+        name = JOptionPane.showInputDialog(this,"Enter name");
 
-/*        buttonAdd.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                addPerson();
-            }
-        });
+        for(Patient p: JMenuFrame.patients)
+        {
+            if(p.getName() != null && p.getName().contains(name))
+            {
+                JOptionPane.showMessageDialog(null,p.toString());
+            }//if end
 
-        buttonSort.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                sortPersons();
-            }
-        }); */
+            //else{ JOptionPane.showMessageDialog(null,"There is no such Patient"); }
 
-        button1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                searchPersons();
-            }
-        });
+        }// for end
+    } //searchPatients end...
 
-        //panelButton.add(buttonAdd);
-        panelButton.add(button1);
-        // panelButton.add(buttonSort);
+    public Patient getPatient(){ return patient; }
 
-        add(panelButton);
+}
 
-        //listPatient.setPreferredSize(new Dimension(400, 360));
-
-        //listModel = new CustomListModel<Patient>(patients);
-        //listPatient.setModel(listModel);
-
-        //listModel.addElement(new Patient("John Doe"));
-
-        //add(listPatient);
-    }
-
-/*    private void addPerson() {
-        String personName = JOptionPane.showInputDialog(this, "Enter person name");
-        if (personName != null) {
-            listModel.addElement(new Person(personName));
-        }
-    }
-
-    private void sortPersons() {
-        Collections.sort(persons);
-        listModel.fireDataChanged();
-    } */
-
-    private void searchPersons() {
-        String patientName = JOptionPane.showInputDialog(this, "Enter person name to search for:");
-
-        if (patientName == null) {
-            return;
-        }
-
-        Collections.sort(patients);
-
-        int foundIndex = Collections.binarySearch(patients, new Patient());
-
-        //if (foundIndex >= 0) {
-            //listPatient.setSelectedIndex(foundIndex);
-        //} else {
-            //JOptionPane.showMessageDialog(this, "Could not find the person " + personName);
-        }
-    }
 
 
