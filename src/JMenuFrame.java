@@ -10,7 +10,7 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
 /**
- *   JMenuFrame: includes one JMenuBar,2 JMenus and 8 JMenuItem objects.
+ *   JMenuFrame: includes one JMenuBar,3 JMenus and 2 JMenuItem objects.
  *   When a menu item is selected, a string
  *   showing which menu choice is selected will appear in a label on the frame.
  */

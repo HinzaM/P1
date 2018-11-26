@@ -79,10 +79,10 @@ public class AddPatient extends JFrame{
             String address = jTAAddress.getText();
             String phone = jTAPhone.getText();
             char gender = jTAGender.getText().charAt(0);
-            {
+            /*{
                 if (gender != 'M' || gender != 'F' || gender != 'X'){
-                    JOptionPane.showMessageDialog(null,"Gender no valid","Error",JOptionPane.INFORMATION_MESSAGE); }
-            }
+                    JOptionPane.showMessageDialog(null,"Gender not valid","Error",JOptionPane.INFORMATION_MESSAGE); }
+            }*/
 
             patient = new Patient(name,address,phone,gender);
             setVisible(false);
